@@ -1,8 +1,11 @@
 import requests
 import os
 
+BOOST_VERSION = '1.68.0'
+DOWNLOAD_FLAG = '_download_complete_'
+
 def bIsDownloaded():
-    if os.path.exists('_download_complete_'):
+    if os.path.exists(DOWNLOAD_FLAG):
         return True
     else:
         return False
@@ -16,12 +19,16 @@ def touch(fname):
 
 
 def get_proxies():
-    http_proxy  = "http://127.0.0.1:3128"
-    https_proxy = "http://127.0.0.1:3128"
-    proxyDict = { 
-              "http"  : http_proxy, 
-              "https" : https_proxy
-            }
+    proxyDict = {}
+    http_proxy = os.getenv('http_proxy')
+    if http_proxy != None:
+        proxyDict["http"] = http_proxy
+    https_proxy = os.getenv('https_proxy')
+    if https_proxy != None:
+        proxyDict["https"] = https_proxy
+    ftp_proxy = os.getenv('ftp_proxy')
+    if ftp_proxy != None:
+        proxyDict["ftp"] = ftp_proxy
     return proxyDict
 
 
@@ -36,7 +43,7 @@ def bDownloadBoost(boost_version):
     else:
         fileName = 'boost_' +  boost_version_str + '.tar.bz2'
         open(fileName,'wb').write(r.content)
-        touch('_download_complete_')
+        touch(DOWNLOAD_FLAG)
         return True
 
 
@@ -45,7 +52,7 @@ if __name__ == '__main__' :
         print ('Boost is already downloaded')
     else:
         print ('Boost is not downloaded. Download now')
-        if bDownloadBoost('1.68.0'):
+        if bDownloadBoost(BOOST_VERSION):
             print('Downloaded boost successfully')
         else:
             print('Downloaded of boost failed')
