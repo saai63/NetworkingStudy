@@ -37,3 +37,5 @@
 # Boost
 *.tar.bz2
 *_download*
+external/boost/boost*
+external/boost/_build*
