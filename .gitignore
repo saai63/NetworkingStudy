@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+#Checksum
+*.md5sum
+
+# Boost
+*.tar.bz2
+*_download*
