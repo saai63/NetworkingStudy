@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.5)
+
+SET(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_COMPILER /usr/bin/g++)
+SET(CMAKE_C_COMPILER /usr/bin/gcc)
+project(boost_asio_timer)
+add_definitions(-DBOOST_ERROR_CODE_HEADER_ONLY)
+add_executable(asio_timer asio_timer.cpp)
+include_directories(../../../external/boost/boost_1_68_0/)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries(asio_timer PRIVATE Threads::Threads)

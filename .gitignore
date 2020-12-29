@@ -39,3 +39,6 @@
 *_download*
 external/boost/boost*
 external/boost/_build*
+
+# Source
+#src/ASIO_Timer/build*/*
