@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.5)
+
+SET(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_COMPILER /usr/bin/g++)
+SET(CMAKE_C_COMPILER /usr/bin/gcc)
+project(boost_asio_tcp_client)
+add_definitions(-DBOOST_ERROR_CODE_HEADER_ONLY)
+add_executable(asio_tcp_client asio_tcp_client.cpp)
+include_directories(../../../external/boost/boost_1_68_0/)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries(asio_tcp_client PRIVATE Threads::Threads)
