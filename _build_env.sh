@@ -1,6 +1,6 @@
 
 ANACONDA_PATH="${HOME}/anaconda3"
-MINICONDA_PATH="${HOME}/miniconda"
+MINICONDA_PATH="${HOME}/miniconda3"
 CONDA_PATH=""
 CONDA_ENV_NAME="networkingstudy"
 
